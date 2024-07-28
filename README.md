@@ -1,5 +1,7 @@
 # aevilla160.github.io
-ReadMe for my personal github pages. 
-If contributing please contribute with care. 
+Personal Site -
+Note: I am **not* a front end dev and don't plan to be. 🙂
 
--AEV160
+## If contributing please contribute with care. 
+
+-- Alex 
