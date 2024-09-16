@@ -11,7 +11,7 @@ export default {
   "baseUrl": "/",
   "organizationName": "aevilla160",
   "projectName": "aevilla160.github.io",
-  "deploymentBranch": "gh-pages",
+  "deploymentBranch": "main",
   "onBrokenLinks": "throw",
   "onBrokenMarkdownLinks": "warn",
   "i18n": {
