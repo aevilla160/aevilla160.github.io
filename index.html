@@ -1,226 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Villa Personal Site</title>
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Villa | HPC & Scientific Computing</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Color variables */
+    :root {
+      --clr-bg: #1a1a2e;
+      --clr-dark: #16213e;
+      --clr-light: #f0f0f0;
+      --clr-accent: #e94560;
+      --font-primary: 'Poppins', sans-serif;
+    }
+    /* Light mode override */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --clr-bg: #f8f9fa;
+        --clr-dark: #ffffff;
+        --clr-light: #1a1a2e;
+        --clr-accent: #e94560;
+      }
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-        }
-
-        section {
-            max-width: 800px;
-            margin: 2em auto;
-            padding: 0 20px;
-        }
-
-
-        h2 {
-            color: #333;
-        }
-
-        .work-item {
-            margin-bottom: 2em;
-            background-color: #fff;
-            padding: 1em;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .work-item h3 {
-            color: #333;
-        }
-
-        .work-item p {
-            color: #666;
-        }
-
-        .work-item a {
-            display: inline-block;
-            margin-top: 1em;
-            padding: 0.5em 1em;
-            text-decoration: none;
-            background-color: #333;
-            color: #fff;
-            border-radius: 4px;
-        }
-
-        .work-item a:hover {
-            background-color: #555;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-        }
-    </style>
+      font-family: var(--font-primary);
+      background: var(--clr-bg);
+      color: var(--clr-light);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: var(--clr-dark);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--clr-accent);
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    nav a {
+      color: var(--clr-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--clr-accent);
+    }
+    .hero {
+      height: 60vh;
+      background: url('https://source.unsplash.com/1600x900/?gpu,technology') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
+      margin-top: 60px;
+      position: relative;
+    }
+    /* Profile picture frame */
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border: 5px solid var(--clr-accent);
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      position: absolute;
+      bottom: -90px;
+      left: calc(50% - 90px);
+      background: var(--clr-dark);
+    }
+    .hero-content {
+      max-width: 600px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--clr-light);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: var(--clr-light);
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+    }
+    section {
+      padding: 3rem 2rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      color: var(--clr-light);
+    }
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: var(--clr-accent);
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: var(--clr-dark);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--clr-accent);
+    }
+    .card h4 {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      color: var(--clr-light);
+    }
+    .card .date {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 1rem;
+    }
+    .card ul {
+      list-style: disc inside;
+      margin-left: 1rem;
+      color: var(--clr-light);
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 1rem;
+      text-decoration: none;
+      font-weight: 500;
+      border: 2px solid var(--clr-accent);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s;
+      color: var(--clr-accent);
+    }
+    .card a:hover {
+      background: var(--clr-accent);
+      color: var(--clr-bg);
+    }
+    footer {
+      background: var(--clr-dark);
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    section ul {
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+    section ul li {
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      header { flex-direction: column; gap: 0.5rem; }
+      nav ul { flex-wrap: wrap; justify-content: center; }
+      .profile-pic { display: none; }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <div class="logo">Alex <span style="color: var(--clr-light);">Villa</span></div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#talks">Talks</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <header>
-        <h1>Alex Villa</h1>
-        <p> Computer Scientist by day, Amateur Physicist by night</p>
-    </header>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>High-Performance Computing & Scientific Exploration</h1>
+      <p>I'm Alex Villa, a CSE major at UC Merced, passionate about MPI, GPU offloading, and data parallelism.</p>
+    </div>
+  </section>
 
-    <section> 
-        <h3>About me</h3>
-        <p>
-        Hello! I am Alex Villa, an undergraduate student at the University of California, Merced.
-        I am currently majoring in Computer Science and Engineering, with a minor in Applied Mathematics.
-        My main research interests are in Collective Communication (MPI, NCCL), GPU Offloading, and data parallelism. 
-        My academic career has spanned many areas and locations, allowing me to explore a wide range of topics and areas of study.
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>I'm an undergraduate Computer Science & Engineering student at UC Merced (Class of 2026). My research delves into collective communication (MPI, NCCL), GPU offloading, and scalable parallel frameworks. Driven by curiosity, I thrive on crafting efficient HPC solutions to tackle real-world scientific challenges.</p>
+  </section>
 
-
-        </p>
-
-
-    </section>
-
-    <section>
-        <h2>My Experience</h2>
-
-        <!-- Example work item, repeat as needed -->
-        <div class="work-item">
-            <h3>Los Alamos National Laboratory</h3>
-            <h4>Parallel Computing Summer Research Internship -- X Computational Physics Division </h4>
-            <p>June 2024 -- August 2024</p>
-            <p>Summer Internship 2024</p>
-            <p>
-                <li>Flexible Computational Science Infrastructure Project (FleCSI)</li>
-                <ul>
-                    Lead new feature design & implementation of C++ pointers as task parameters in LANL’s physics framework, FleCSI
-                    <li> Enabling users to pass complex data structures to tasks without copying data, 
-                        reducing memory overhead and improving performance.</li>
-                    <li> large constant objects (e.g., EOS tables) could be passed to tasks directly rather
-                         than being nominated out of global variables by index.</li>
-                </ul>
-                <ul>
-                    Utilize Nvidia’s programming model, Legion and latest C++ 
-                    features to handle new user cases and memory safety during program compilation and execution.
-                </ul>
-                <ul>
-                    Leveraged distributed memory access across CPU/GPU for each unique task process, optimizing computational efficiency and resource utilization in FleCSI.
-                </ul>
-
-            </p>
-            <p>
-
-            </p>
-            <a href="https://flecsi.github.io/flecsi/#" target="blank">View FleCSI Project Page</a>
-        </div>
-
-        <div class="work-item">
-            <h3>Intel Student Ambassador</h3>
-            <h4>Intel Corporation</h4>
-            <p>June 2024 -- Present </p>
-            <p>
-            <ul>
-                Project: <br> This project introduces Intel MKL, Intel Distribution for Python,
-                 optimized scikit-learn, and Intel VTune to optimize computationally intensive operations in 
-                 scientific computing and machine learning workloads. It focuses on utilizing these tools in 
-                 high-performance computing environments, providing students with real-world coding examples 
-                 and profiling techniques for both serial and parallel optimization. The overarching objective 
-                 of this project is to introduce optimized packages to accelerate various workloads. 
-            </ul>   
-            <ul>
-                Organize and facilitate workshops focused on AI, HPC, and visualization, showcasing Intel’s OneAPI toolkit.
-                <li><i>Workshops will start in early Fall 2024 at UC Merced!</i></li>
-
-            </ul>
-            </p>
-    
-        </div>
-        <div class="work-item">
-            <h3>University of California, Merced</h3>
-            <h4>Undergraduate Research Assistant -- Parallel and Distributed Systems Lab</h4>
-            <p>October 2023 -- Present</p>
-            <p>
-                <ul>Create an in-depth research presentation highlighting optimization, analysis and future work in MPI and distributed
-                    memory usage for deep learning and molecular dynamic proxy applications(e.g. CabanaMD & miniMD).</ul>
-                <ul>Analyze MPI collective communication in deep learning framework, Horovod, through ring-Allreduce versus a
-                    butterfly-Allreduce implementation.</ul>
-                <ul>Examined the performance of Horovod, NVIDIA, and MPICH collective communications libraries in Deep Learning.</ul>
-                <ul>Previos Projects<br>
-                   <li> Evaulating Collective Communication Operations in Horovod</li>
-                <!--<li>Optimized and analyzed the performance of the Graph500 benchmark on the UC Merced HPC cluster.</li>-->
-                <li>Analyze MiniMD and Graoh500s' usage of MPI and other parallel techniques</li>
-            </ul>
-            </p>
-
-        </div>
-        <div class="work-item">
-            <h3>University of California, Merced</h3>
-            <h4>Student Technology Consultant -- Cyberinfrastructure and Research Technologies Teamb</h4>
-            <p>October 2022 -- Present</p>
-            <p>
-                <ul>Provide technical support for UC Merced’s High-Performance Computing (HPC) cluster, 
-                    assisting researchers with job submission, software installation, and debugging.</ul>
-                <ul>Designed and maintained documentation for UC Merced’s Official HPC Cluster documentation.</ul>
-                <ul> Contribute extensively to UC Merced's HPC Documentation site, through new addition and revision of content for HPC Users. </ul>
-            </p>    
-                <a href="https://ucm-it.github.io/hpc_docs/#/" target="blank">View UCM's HPC Documentation Site Here</a>
-        </div>
-    </section>
-
-    <section>
-        <h4>Awards & Recognitions</h4>
-
-        <p>
-
-            <li>Paralel Computing Fellowship -- Los Alamos National Laboratory</li>
-            <li> IndySCC 2024 Travel Grant -- SC 24</li>
-        </p>
-    </section>
-
-    <section>
-        <h4>Education</h4>
-        <p>
-            <li>University of California Merced</li>
-            <ul>
-                <li>B.S. Computer Science and Engineering</li>
-                <li>Minor in Applied Mathematics</li>
-                <li>Expected Graduation: May 2026</li>
-            <!---<li>Tools: Git, Docker, Kubernetes, Intel VTune, Intel MKL, Intel Distribution for Python, Horovod, FleCSI, Legion, NVIDIA HPC SDK, NVIDIA Nsight, NVIDIA Nsight Compute, NVIDIA Nsight Systems -->
+  <section id="research">
+    <h2 class="section-title">Research Interests</h2>
+    <p>My research focuses on high-performance computing (HPC) techniques, particularly in the areas of:</p>
+    <ul>
+      <li>Collective communication protocols (MPI, NCCL)</li>
+      <li>GPU offloading and optimization</li>
+      <li>Scalable parallel frameworks for scientific computing</li>
+      <li>Data parallelism alternatives and performance analysis</li>
     </ul>
-    </p>
-    </section>
-                <section>
-        <h4> Notes </h4>
-        <p>
-           I deeply value my academic journey and recognize that I would not have reached my current fields of interest and projects without the influence of many remarkable individuals. 
-            From engaging professors to inspiring graduate student mentors, as well as knowledgeable mentors from industry and national labs, 
-            each person's guidance and insight have been instrumental in shaping my interests, future academic and career trajectory.
+    <p>I'm passionate about leveraging these technologies to solve complex scientific problems and improve computational efficiency.</p>
+  </section>
 
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Los Alamos National Laboratory</h3>
+        <h4>Summer Research Intern, Computational Physics Division</h4>
+        <div class="date">Jun 2024 – Aug 2024</div>
+        <ul>
+          <li>Designed & implemented C++ pointer support in FleCSI (C++17/20/23), enabling direct task parameterization of complex data.</li>
+          <li>Optimized distributed CPU/GPU memory access & validation for asynchronous task pipelines in scientific workloads.</li>
+          <li>Leveraged Legion & NVIDIA HPC SDK to enhance memory safety and performance in computational physics simulations.</li>
+        </ul>
+        <a href="https://flecsi.github.io/flecsi/#" target="_blank">View Project</a>
+      </div>
+      <div class="card">
+        <h3>UC Merced</h3>
+        <h4>Undergraduate Research Assistant, PADSYS Lab</h4>
+        <div class="date">Oct 2023 – Present</div>
+        <ul>
+          <li>Presented MPI & distributed DL proxy benchmarks (CabanaMD, miniMD) in in-depth research talks.</li>
+          <li>Analyzed Horovod collective patterns (ring vs butterfly Allreduce) & compared MPICH, NVIDIA NCCL, Horovod implementations.</li>
+          <li>Prototyped optimizations to accelerate DL model parallelism and evaluate communication bottlenecks.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>UC Merced</h3>
+        <h4>Student Technology Consultant, Cyberinfrastructure Team</h4>
+        <div class="date">Oct 2022 – Present</div>
+        <ul>
+          <li>Support HPC users: job scheduling, environment modules, debugging on campus cluster.</li>
+          <li>Authored & maintained comprehensive HPC user documentation & tutorials.</li>
+          <li>Led workshops on SLURM, MPI, containerization (Singularity/Apptainer).</li>
+        </ul>
+        <a href="https://ucm-it.github.io/hpc_docs/#/" target="_blank">Docs Site</a>
+      </div>
+    </div>
+  </section>
 
- </p>
+  <section id="awards">
+    <h2 class="section-title">Awards & Honors</h2>
+    <ul style="list-style: none; padding-left: 0;">
+      <li>🔹 Los Alamos Parallel Computing Fellowship (2024)</li>
+      <li>🔹 Google-CAHSI Student Research Fellowship, AY 2024 - 2025</li>
+      <li>🔹 IndySCC 2024 Travel Grant, SC24 Conference</li>
+      <li>🔹 SC'25 Volunteer Travel Grant, SC'25 Conference</li>
+      <li>🔹 Building Engagement Fellow, SIAM CSE 2025</li>
+    </ul>
+  </section>
 
-            <p>
-                Please note that the views and opinions expressed on this page are solely my own and
-                do not reflect the views or opinions of my current or previous affiliates.
+  <section id="talks">
+    <h2 class="section-title">Talks & Presentations</h2>
+    <ul style="list-style: none; padding-left: 0;">
+      <li>🔹 "Optimizing Collective Communication in Deep Learning Frameworks" - SC24 Conference, Nov 2024</li>
+      <li>🔹 "Exploring GPU Offloading Techniques for Scientific Computing" - SIAM CSE 2025, Feb 2025</li>
+      <li>🔹 "Performance Analysis of MPI Implementations in High-Performance Computing" - UC Merced Research Symposium, Apr 2025</li>
+    </ul>
+  </section>
 
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <ul style="list-style: none; padding-left: 0;">
+      <li><strong>UC Merced</strong>, B.S. Computer Science & Engineering, Minor in Applied Mathematics</li>
+      <li>Expected Graduation: May 2026</li>
+    </ul>
+  </section>
 
-            </p>
-    </section>
+  <section id="contact">
+    <h2 class="section-title">Get in Touch</h2>
+    <p>📧 <a href="mailto:avilla@lanl.edu" style="color: var(--clr-accent); text-decoration: none;">avilla@lanl.edu</a></p>
+    <p>💼 <a href="https://www.linkedin.com/in/aevilla160/" target="_blank" style="color: var(--clr-accent); text-decoration: none;">LinkedIn</a> | <a href="https://github.com/aevilla160" target="_blank" style="color: var(--clr-accent); text-decoration: none;">GitHub</a></p>
+  </section>
 
-    <footer>
-        <p>&copy; 2024 Alex Villa </p>
-    </footer>
-
+  <footer>
+    &copy; 2025 Alex Villa -- Somewhere in between LA and SF.
+  </footer>
 </body>
-
 </html>
