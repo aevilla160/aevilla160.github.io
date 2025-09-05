@@ -98,8 +98,7 @@
     .hero h1 {
       font-size: 3rem;
       font-weight: 700;
-      color: #10111d;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      color: var(--clr-light);
       margin-bottom: 1rem;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -107,8 +106,7 @@
     .hero p {
       margin-top: 1rem;
       font-size: 1.2rem;
-      color: #190e53;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      color: var(--clr-light);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -227,42 +225,35 @@
     </nav>
   </header>
 
+
   <section class="hero" id="home">
     <div class="hero-content">
       <h1>Hello!</h1>
-      <p>I'm Alex, I study Computer Science and Applied Mathematics at the University of California, Merced.</p>
-     
-      </p>
-
+      <p> <span style="color: var(--clr-accent)">I'm Alex, I study Computer Science and Applied Mathematics at the University of California, Merced.</span></p>
     </div>
   </section>
 
 <section id="about">
   <p>
-    I'm an undergraduate Computer Science &amp; Engineering student at the University of California, Merced.
-    Broadly, I’m passionate about <strong>High-Performance Computing (HPC)</strong>, parallel and MLsystems and Scientific computing.
+    I'm an undergraduate Computer Science & Engineering student at the University of California, Merced.
+    I am broadly interested in high performance and parallel computing with applications to deep learning and scientific computing. 
+    More specifically I am interested in collective communication and tensor optimizations and scalable scientific machine learning. 
+    <a href="#research" style="text-decoration: underline;">See my research interests here</a>
   </p>
-
-  <p><strong>More specifically, my current focus includes:</strong></p>
-  <ul>
-    <li><strong>Collective communication</strong> (MPI, NCCL): topology-aware algorithms, latency hiding, and communication–computation overlap.</li>
-    <li><strong>GPU offloading &amp; optimization</strong>: memory-hierarchy–aware code, and end-to-end throughput improvements.</li>
-    <li><strong>Scaling training beyond data parallel</strong>: pipeline/tensor parallelism alternatives and performance analysis.</li>
-    <li><strong>Physics-informed ML &amp; neural operators</strong>: scalability, stability, and robustness at extreme scale.</li>
-  </ul>
 </section>
 
-  <section id="research">
-    <h2 class="section-title">Research Interests</h2>
-    <p>My research focuses on high-performance computing (HPC) techniques, particularly in the areas of:</p>
-    <ul>
-      <li>Collective communication protocols (MPI, NCCL)</li>
-      <li>GPU offloading and optimization</li>
-      <li>Scalable parallel frameworks for scientific computing</li>
-      <li>Data parallelism alternatives and performance analysis</li>
-    </ul>
-    <p>I am inspired and motivated through problems that arise in Deep Learning and Scientific Computing applications.</p>
-  </section>
+<section id="research">
+  <h2 class="section-title">Research Interests</h2>
+  <p>I focus on HPC techniques and parallel algorithms, especially for ML and scientific workloads:</p>
+  <ul>
+    <li><strong>Collective communication</strong> (MPI, NCCL): topology-aware algorithms, latency hiding, and communication–computation overlap.</li>
+    <li><strong>GPU offloading &amp; optimization</strong></li>
+    <li><strong>Data Parallel and it's alternatives</strong>: data-parallelism alternatives and performance analysis.</li>
+    <li><strong>Physics-informed ML &amp; neural operators</strong>: scalability, stability, and robustness at extreme scale.</li>
+    <li><strong>Scalable parallel frameworks</strong> for scientific computing.</li>
+  </ul>
+<p>I am inspired and motivated through problems that arise in Deep Learning and Scientific Computing applications.</p>
+</section>
 
   <section id="experience">
     <h2 class="section-title">Experience</h2>
@@ -329,19 +320,22 @@
   <section id ="services">
     <h2 class="section-title">Services & Involvement</h2>
     <ul style="list-style: none; padding-left: 0;">
-      <li>Undergraduate Mentor, UC Merced CSE Department (2023 - Present)</li>
-      <li>Student Volunteer, SC24 Conference (2025)</li>
-      <li>Member, Association for Computing Machinery (ACM) (2022 - Present)</li>
-      <li>Member, Society for Industrial and Applied Mathematics (SIAM) (2023 - Present)</li>
+      <li>Undergraduate Mentor, UC Merced CSE Department (2024 - Present)</li>
+      <li>Student Volunteer, SC25 Conference (2025)</li>
+      <li>Member, Association for Computing Machinery (ACM) (2023 - Present)</li>
+      <li>Member, Society for Industrial and Applied Mathematics (SIAM) (2025 - Present)</li>
     </ul>
   </section>
 
   <section id="talks">
     <h2 class="section-title">Talks & Presentations</h2>
     <ul style="list-style: none; padding-left: 0;">
-      <li>🔹 "Horovod: For Heterogenous Distributed Machine Learning Training" - Lightning Talk; SC24 Conference, Nov 2024</li>
-      <li>🔹 "Better Tasks for Task Based Parallelism" - Los Alamos National Laboratory, August 2024</li>
-      <li>🔹 "FleCSI: A Framework for Task-Based Parallelism" - UC Merced Applied Mathematics: Data Science and Scientific Computing Seminar, October 2024</li>
+      <li>"Accelerating Physics-informed Neural Networks with Modern GPU Architectures" - SIAM CSE Poster Presentation, March 2025</li>
+      <li>"Horovod: For Heterogenous Distributed Machine Learning Training" - Lightning Talk; SC24 Conference, Nov 2024</li>
+      <li>"Better Tasks for Task Based Parallelism" - Los Alamos National Laboratory, August 2024</li>
+      <li>"FleCSI: A Framework for Task-Based Parallelism" - UC Merced Applied Mathematics: Data Science and Scientific Computing Seminar, October 2024</li>
+
+
     </ul>
   </section>
 
