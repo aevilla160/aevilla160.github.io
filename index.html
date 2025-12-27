@@ -6,7 +6,8 @@
   <title>Alex Villa | Site Home</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <style>
+ <link rel="icon" href="favicon.png" type="image/png">
+ <style>
     /* Color variables */
     :root {
       --clr-bg: #1a1a2e;
@@ -198,6 +199,18 @@
     section ul li {
       margin-bottom: 0.5rem;
     }
+    /* Secret link styling */
+    .secret-link {
+      color: rgba(136, 136, 136, 0.08);
+      font-size: 0.55rem;
+      text-decoration: none;
+      letter-spacing: 0.3em;
+      transition: color 0.5s ease;
+      user-select: none;
+    }
+    .secret-link:hover {
+      color: rgba(136, 136, 136, 0.25);
+    }
     @media (max-width: 768px) {
       .hero h1 { font-size: 2rem; }
       .hero p { font-size: 1rem; }
@@ -238,7 +251,7 @@
     I'm an undergraduate Computer Science & Engineering student at the University of California, Merced. 
     
     I am broadly interested in high performance and parallel computing with applications to Deep Learning and Computational Physics.
-    More specifically I am interested in collective communication and tensor optimizations and scalable scientific machine learning.
+    More specifically I am interested in designing efficient collective communication primitives for emerging workloads, tensor optimizations, and scalable scientific machine learning.
     <a href="#research" style="text-decoration: underline;">See my research interests here</a>
   </p>
 </section>
@@ -247,8 +260,8 @@
   <h2 class="section-title">Research Interests</h2>
   <p>I focus on HPC techniques and parallel algorithms, especially for ML and scientific workloads:</p>
   <ul>
-    <li><strong>Collective communication</strong> (MPI, NCCL): topology-aware algorithms, latency hiding, and communication–computation overlap.</li>
-    <li><strong>Efficient Parallel Algorithms and GPU</strong>: optimization techniques for GPU computing and parallel algorithms.</li>
+    <li><strong>Collective communication</strong> (MPI, NCCL): topology-aware algorithms and optimizations for emerging and irregular workloads (SciML, Quantum).</li>
+    <li><strong>Efficient Parallel Algorithms and Architectures</strong>: optimization techniques for GPUs and parallel algorithms.</li>
     <li><strong>Physics-informed ML &amp; neural operators</strong>: scalability, stability, and robustness at extreme scale.</li>
     <li><strong>Scalable parallel frameworks</strong> for scientific computing.</li>
   </ul>
@@ -297,11 +310,11 @@
     <h2 class="section-title">Preprints and Publications</h2>
     <ul style="list-style: none; padding-left: 0;">
       <li>
-        <cite>Fang Chen, Alex Villa, Gongbo Liang, Xiaoyi Lu, Meng Tang</cite>, “Can Contrastive Learning Improve Class-Imbalanced Diffusion Model?”, <em>arXiv preprint</em> <strong>arXiv:2507.09052</strong> (2025).
+        <cite>Fang Chen, Alex Villa, Gongbo Liang, Xiaoyi Lu, Meng Tang</cite>, "Can Contrastive Learning Improve Class-Imbalanced Diffusion Model?", <em>arXiv preprint</em> <strong>arXiv:2507.09052</strong> (2025).
       </li>
 
     <li>
-    <cite>Benjamin Bergen , Nick Moss, Irina Demeshko, Davis Herring, Marc Charest, Julien Loiseau,..., Alex Villa, et al. </cite>, “FleCSI: Flexible Computational Science Infrastructure”, <em>Journal of Open Source Software</em> preprint <strong>JOSS:9599a55b8eb5f55608d795aefe229fd1</strong> (2025). <strong>PrePrint; In Review</strong>.
+    <cite>Benjamin Bergen , Nick Moss, Irina Demeshko, Davis Herring, Marc Charest, Julien Loiseau,..., Alex Villa, et al. </cite>, "FleCSI: Flexible Computational Science Infrastructure", <em>Journal of Open Source Software</em> preprint <strong>JOSS:9599a55b8eb5f55608d795aefe229fd1</strong> (2025). <strong>PrePrint; In Review</strong>.
   </li>
   </ul>
   </section>
@@ -309,6 +322,7 @@
   <section id="awards">
     <h2 class="section-title">Awards & Honors</h2>
     <ul style="list-style: none; padding-left: 0;">
+      <li> GEM Graduate Fellowship - GEM Consortium, 5 Year PhD Funding (anticipated)</li>
       <li>Los Alamos Parallel Computing Fellowship, $10,000 (2024)</li>
       <li>Google-CAHSI Student Research Fellowship, $6,000 (AY 2024 - 2025)</li>
       <li>IndySCC 2024 Travel Grant, SC24 Conference</li>
@@ -322,7 +336,6 @@
     <ul style="list-style: none; padding-left: 0;">
       <li>Undergraduate Mentor, UC Merced CSE Department (2024 - Present)</li>
       <li>Student Volunteer, SC25 Conference (2025)</li>
-      <li>Member, Association for Computing Machinery (ACM) (2023 - Present)</li>
       <li>Member, Society for Industrial and Applied Mathematics (SIAM) (2025 - Present)</li>
     </ul>
   </section>
@@ -352,6 +365,11 @@
     <p>📧 <a href="mailto:avilla@lanl.gov" style="color: var(--clr-accent); text-decoration: none;">avilla@lanl.gov</a></p>
     <p>💼 <a href="https://www.linkedin.com/in/aevilla160/" target="_blank" style="color: var(--clr-accent); text-decoration: none;">LinkedIn</a> | <a href="https://github.com/aevilla160" target="_blank" style="color: var(--clr-accent); text-decoration: none;">GitHub</a></p>
   </section>
+
+  <!-- The secret link - barely visible, looks like a subtle separator -->
+  <div style="text-align: center; padding: 1rem 0 0.5rem;">
+    <a href="second.html" class="secret-link" title="">· · ·</a>
+  </div>
 
   <footer>
     &copy; 2025 Alex Villa -- Somewhere in between LA and SF.

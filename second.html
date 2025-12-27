@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔐 ???</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --clr-bg: #1a1a2e;
+      --clr-dark: #16213e;
+      --clr-light: #f0f0f0;
+      --clr-accent: #e94560;
+      --clr-success: #00d9a5;
+      --font-primary: 'Poppins', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --clr-bg: #f8f9fa;
+        --clr-dark: #ffffff;
+        --clr-light: #1a1a2e;
+      }
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: var(--font-primary);
+      background: var(--clr-bg);
+      color: var(--clr-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Password Gate */
+    #gate {
+      text-align: center;
+      padding: 2rem;
+      animation: fadeIn 0.5s ease;
+    }
+    #gate h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    #gate p {
+      color: #888;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .password-box {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    #passphrase {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-family: var(--font-mono);
+      background: var(--clr-dark);
+      border: 2px solid #333;
+      border-radius: 8px;
+      color: var(--clr-light);
+      width: 250px;
+      transition: border-color 0.3s;
+    }
+    #passphrase:focus {
+      outline: none;
+      border-color: var(--clr-accent);
+    }
+    #passphrase.error {
+      border-color: #ff4757;
+      animation: shake 0.4s ease;
+    }
+    #passphrase.success {
+      border-color: var(--clr-success);
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-family: var(--font-primary);
+      font-weight: 600;
+      background: var(--clr-accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(233, 69, 96, 0.4);
+    }
+    .hint {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    .hint code {
+      background: var(--clr-dark);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* Secret Content */
+    #secret-content {
+      display: none;
+      max-width: 900px;
+      padding: 2rem;
+      animation: fadeIn 0.8s ease;
+    }
+    #secret-content.visible {
+      display: block;
+    }
+    .secret-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .secret-header h1 {
+      font-size: 2.5rem;
+      color: var(--clr-success);
+      margin-bottom: 0.5rem;
+    }
+    .secret-header p {
+      color: #888;
+    }
+
+    .secret-section {
+      background: var(--clr-dark);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .secret-section h2 {
+      color: var(--clr-accent);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .secret-section p, .secret-section li {
+      line-height: 1.8;
+      color: var(--clr-light);
+    }
+    .secret-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .secret-section ul li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .secret-section ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--clr-accent);
+    }
+
+    .fun-fact {
+      background: linear-gradient(135deg, rgba(233, 69, 96, 0.1), rgba(0, 217, 165, 0.1));
+      border-left: 4px solid var(--clr-accent);
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: var(--clr-accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .back-link:hover {
+      opacity: 0.8;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Password Gate -->
+  <div id="gate">
+    <h1>🔐</h1>
+    <p>You found the secret page! But first...</p>
+    <div class="password-box">
+      <input type="password" id="passphrase" placeholder="Enter passphrase..." autocomplete="off" />
+      <button onclick="checkPassword()">Unlock</button>
+    </div>
+    <p class="hint">Hint: Just Ask Me  <code>_______</code></p>
+  </div>
+
+  <!-- Secret Content (hidden until password entered) -->
+  <div id="secret-content">
+    <div class="secret-header">
+      <h1>🎉 Access Granted!</h1>
+      <p>Welcome to the secret corner of Alex's site</p>
+    </div>
+
+    <div class="secret-section">
+      <h2>🎮 Beyond the Terminal</h2>
+      <p>When I'm not optimizing collective communication patterns or debugging MPI calls, you might find me:</p>
+      <ul>
+        <li>Playing rhythm games (my typing speed comes from somewhere!)</li>
+        <li>Exploring the hiking trails around the Central Valley</li>
+        <li>Building mechanical keyboards (custom switches are a rabbit hole)</li>
+        <li>Watching Formula 1 races at ungodly hours</li>
+      </ul>
+    </div>
+
+    <div class="secret-section">
+      <h2>🤫 Things I Don't Put on My Resume</h2>
+      <ul>
+        <li>Once debugged a race condition at 3 AM fueled entirely by instant ramen</li>
+        <li>My first "parallel program" was a Minecraft server in middle school</li>
+        <li>I've probably said "it works on my machine" more times than I'd like to admit</li>
+        <li>My dotfiles are a chaotic masterpiece that only I understand</li>
+      </ul>
+      <div class="fun-fact">
+        <strong>Fun fact:</strong> The first time I ran a job on an HPC cluster, I accidentally requested 1000 nodes instead of 10. The sysadmin was... understanding.
+      </div>
+    </div>
+
+    <div class="secret-section">
+      <h2>💭 Random Thoughts</h2>
+      <ul>
+        <li>The best documentation is the one you write at 2 AM when you finally figure it out</li>
+        <li>GPUs are just really good at doing the same thing a billion times</li>
+        <li>"It's not a bug, it's undefined behavior" - ancient C programmer proverb</li>
+        <li>The real allreduce was the friends we made along the way</li>
+      </ul>
+    </div>
+
+    <div class="secret-section">
+      <h2>📬 Secret Contact</h2>
+      <p>If you made it this far, you're probably someone interesting. Feel free to reach out about:</p>
+      <ul>
+        <li>Cool HPC projects or research collaborations</li>
+        <li>Mechanical keyboard recommendations</li>
+        <li>Your favorite distributed systems war stories</li>
+        <li>Literally anything interesting</li>
+      </ul>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to the normal site</a>
+  </div>
+
+  <script>
+    // The "secure" passphrase (this is just for fun, not real security!)
+    const SECRET = 'allreduce';
+    const ALT_SECRETS = ['mpi', 'nccl', 'horovod', 'collective']; // Alternative accepted answers
+
+    function checkPassword() {
+      const input = document.getElementById('passphrase');
+      const entered = input.value.toLowerCase().trim();
+      
+      if (entered === SECRET || ALT_SECRETS.includes(entered)) {
+        input.classList.remove('error');
+        input.classList.add('success');
+        
+        setTimeout(() => {
+          document.getElementById('gate').style.display = 'none';
+          document.getElementById('secret-content').classList.add('visible');
+        }, 500);
+      } else {
+        input.classList.add('error');
+        setTimeout(() => input.classList.remove('error'), 400);
+      }
+    }
+
+    // Allow Enter key to submit
+    document.getElementById('passphrase').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+  </script>
+</body>
+</html>
