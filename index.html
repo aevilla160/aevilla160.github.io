@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alex Villa | Site Home</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
- <link rel="icon" href="favicon.png" type="image/png">
- <style>
+  <!-- Markdown renderer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
     /* Color variables */
     :root {
       --clr-bg: #1a1a2e;
@@ -16,6 +19,7 @@
       --clr-accent: #e94560;
       --font-primary: 'Poppins', sans-serif;
     }
+
     /* Light mode override */
     @media (prefers-color-scheme: light) {
       :root {
@@ -25,11 +29,13 @@
         --clr-accent: #e94560;
       }
     }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: var(--font-primary);
       background: var(--clr-bg);
@@ -37,6 +43,7 @@
       line-height: 1.6;
       scroll-behavior: smooth;
     }
+
     header {
       position: fixed;
       width: 100%;
@@ -48,74 +55,97 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
+
     header .logo {
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--clr-accent);
     }
+
     nav ul {
       display: flex;
       list-style: none;
       gap: 1.5rem;
     }
+
     nav a {
       color: var(--clr-light);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
     }
+
     nav a:hover {
       color: var(--clr-accent);
     }
+
     .hero {
-      height: 60vh;
-      background: url('https://source.unsplash.com/1600x900/?gpu,technology') center/cover no-repeat;
+      background: var(--clr-dark);
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 0 2rem;
+      gap: 2.5rem;
+      padding: 2.5rem 3rem;
       margin-top: 60px;
-      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
-    /* Profile picture frame */
-    .profile-pic {
-      width: 180px;
-      height: 180px;
-      border: 5px solid var(--clr-accent);
+
+    .hero-photo {
+      width: 140px;
+      height: 140px;
+      border: 4px solid var(--clr-accent);
       border-radius: 50%;
+      overflow: hidden;
+      background: var(--clr-bg);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 0.75rem;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      position: absolute;
-      bottom: -90px;
-      left: calc(50% - 90px);
-      background: var(--clr-dark);
     }
+
     .hero-content {
-      max-width: 600px;
+      max-width: 520px;
     }
+
     .hero h1 {
-      font-size: 3rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: var(--clr-light);
-      margin-bottom: 1rem;
+      margin-bottom: 0.4rem;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
     .hero p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       color: var(--clr-light);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
+    section p a,
+    section ul a,
+    section li a {
+      color: var(--clr-accent);
+    }
+
     section {
       padding: 3rem 2rem 2rem;
       max-width: 1000px;
       margin: auto;
+      scroll-margin-top: 64px;
     }
+
     .section-title {
       font-size: 2rem;
       font-weight: 600;
@@ -123,6 +153,7 @@
       position: relative;
       color: var(--clr-light);
     }
+
     .section-title::after {
       content: '';
       width: 60px;
@@ -132,44 +163,52 @@
       bottom: -8px;
       left: 0;
     }
+
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
     }
+
     .card {
       background: var(--clr-dark);
       border-radius: 12px;
       padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s, box-shadow 0.3s;
     }
+
     .card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
+
     .card h3 {
       font-size: 1.4rem;
       margin-bottom: 0.5rem;
       color: var(--clr-accent);
     }
+
     .card h4 {
       font-size: 1rem;
       font-weight: 400;
       margin-bottom: 0.5rem;
       color: var(--clr-light);
     }
+
     .card .date {
       font-size: 0.9rem;
       color: #aaa;
       margin-bottom: 1rem;
     }
+
     .card ul {
       list-style: disc inside;
       margin-left: 1rem;
       color: var(--clr-light);
     }
+
     .card a {
       display: inline-block;
       margin-top: 1rem;
@@ -181,10 +220,37 @@
       transition: background 0.3s, color 0.3s;
       color: var(--clr-accent);
     }
+
     .card a:hover {
       background: var(--clr-accent);
       color: var(--clr-bg);
     }
+
+    .card .mentor {
+      font-size: 0.82rem;
+      color: #aaa;
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .cv-btn {
+      display: inline-block;
+      margin-top: 0.9rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 2px solid var(--clr-accent);
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      color: var(--clr-accent);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .cv-btn:hover {
+      background: var(--clr-accent);
+      color: var(--clr-bg);
+    }
+
     footer {
       background: var(--clr-dark);
       text-align: center;
@@ -192,13 +258,50 @@
       color: #888;
       font-size: 0.9rem;
     }
+
     section ul {
       padding-left: 1.5rem;
       margin-top: 1rem;
     }
+
     section ul li {
       margin-bottom: 0.5rem;
     }
+
+    /* Timeline for News section (renders marked.js output) */
+    .timeline-md {
+      margin-top: 1.5rem;
+    }
+
+    .timeline-md ul {
+      list-style: none !important;
+      padding-left: 1.5rem !important;
+      margin-top: 0 !important;
+      border-left: 2px solid var(--clr-accent);
+    }
+
+    .timeline-md ul li {
+      position: relative;
+      margin-bottom: 1.2rem !important;
+      line-height: 1.6;
+    }
+
+    .timeline-md ul li::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: var(--clr-accent);
+      border-radius: 50%;
+      position: absolute;
+      left: calc(-1.5rem - 5px);
+      top: 0.45rem;
+    }
+
+    .timeline-md ul li strong:first-child {
+      color: var(--clr-accent);
+      margin-right: 0.3rem;
+    }
+
     /* Secret link styling */
     .secret-link {
       color: rgba(136, 136, 136, 0.08);
@@ -208,23 +311,51 @@
       transition: color 0.5s ease;
       user-select: none;
     }
+
     .secret-link:hover {
       color: rgba(136, 136, 136, 0.25);
     }
+
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 1rem; }
-      header { flex-direction: column; gap: 0.5rem; }
-      nav ul { flex-wrap: wrap; justify-content: center; }
-      .profile-pic { display: none; }
+      .hero {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 2rem 1.5rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero-photo {
+        width: 110px;
+        height: 110px;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">Alex <span style="color: var(--clr-light);">Villa</span></div>
     <nav>
       <ul>
+        <li><a href="#news">News</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -240,62 +371,114 @@
 
 
   <section class="hero" id="home">
+    <div class="hero-photo">
+      <img src="revised_pic.png" alt="Alex Villa">
+    </div>
     <div class="hero-content">
       <h1>Hello!</h1>
-      <p> <span style="color: var(--clr-accent)">I'm Alex, I study Computer Science and Applied Mathematics at the University of California, Merced.</span></p>
+      <p><span style="color: var(--clr-accent)">I'm Alex, I am an incoming ECE Ph.D. student at the University of
+          Florida.</span></p>
+      <a href="Villa_Alex_CV_2026.pdf" target="_blank" class="cv-btn">View CV ↗</a>
     </div>
   </section>
 
-<section id="about">
-  <p>
-    I'm an undergraduate Computer Science & Engineering student at the University of California, Merced. 
-    
-    I am broadly interested in high performance and parallel computing with applications to Deep Learning and Computational Physics.
-    More specifically I am interested in designing efficient collective communication primitives for emerging workloads, tensor optimizations, and scalable scientific machine learning.
-    <a href="#research" style="text-decoration: underline;">See my research interests here</a>
-  </p>
-</section>
 
-<section id="research">
-  <h2 class="section-title">Research Interests</h2>
-  <p>I focus on HPC techniques and parallel algorithms, especially for ML and scientific workloads:</p>
-  <ul>
-    <li><strong>Collective communication</strong> (MPI, NCCL): topology-aware algorithms and optimizations for emerging and irregular workloads (SciML, Quantum).</li>
-    <li><strong>Efficient Parallel Algorithms and Architectures</strong>: optimization techniques for GPUs and parallel algorithms.</li>
-    <li><strong>Physics-informed ML &amp; neural operators</strong>: scalability, stability, and robustness at extreme scale.</li>
-    <li><strong>Scalable parallel frameworks</strong> for scientific computing.</li>
-  </ul>
-<p>I am inspired and motivated through problems that arise in Deep Learning and Computational Physics applications.</p>
-</section>
+
+  <section id="about">
+    <p>
+      Previously, I completed my B.S. in Computer Science & Engineering at the University of California, Merced.
+      I also obtained a minor in Applied Mathematics. <br />
+      <br />
+      I am broadly interested in high performance and parallel computing with applications to Deep Learning and
+      Computational Physics.
+      More specifically I am interested in designing efficient collective communication primitives for emerging
+      workloads, tensor optimizations, and scalable scientific machine learning.
+      <a href="#research" style="text-decoration: underline;">See my research interests here</a>
+    </p>
+  </section>
+
+  <section id="news">
+    <h2 class="section-title">Recent News</h2>
+    <div class="timeline-md" data-markdown>
+      - **May 2025** — Started interning at Lawrence Livermore National Laboratory for the summer! `:>`
+    </div>
+  </section>
+
+  <section id="research">
+    <h2 class="section-title">Research Interests</h2>
+    <ul>
+      <li><strong>Collective communication</strong> (MPI, NCCL): topology-aware algorithms and optimizations for
+        emerging and irregular workloads (SciML, Quantum).</li>
+      <li><strong>Efficient Parallel Algorithms and Architectures</strong>: optimization techniques for GPUs and
+        parallel algorithms.</li>
+      <li><strong>Physics-informed ML &amp; neural operators</strong>: scalability, stability, and robustness at extreme
+        scale.</li>
+      <li><strong>Scalable parallel frameworks</strong> for scientific computing.</li>
+    </ul>
+    <p>I am inspired and motivated through problems that arise in Deep Learning and Computational Physics applications.
+    </p>
+  </section>
 
   <section id="experience">
     <h2 class="section-title">Experience</h2>
     <div class="card-grid">
       <div class="card">
+        <h3>Lawrence Livermore National Laboratory</h3>
+        <h4>Visiting Computing Scholar</h4>
+        <div class="date">May 2026 – August 2026</div>
+        <div class="mentor">Mentor: Dr. Daniel Nichols</div>
+        <ul>
+          <li>Implementing and optimizing communication-efficient collective operations via statistical modeling.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Los Alamos National Laboratory</h3>
+        <h4>Software Systems Intern, Weapons Research Services-Weapon Mission Technology</h4>
+        <div class="date">May 2025 – Nov 2025</div>
+        <div class="mentor">Mentors: Luis Diaz, Rachel Martin</div>
+        <ul>
+          <li>Partnered with customers to triage and resolve performance, compatibility, and configuration issues
+            migrating HPC workloads to cloud platforms.</li>
+          <li>Built a standardized internal framework for software lifecycle automation, cutting manual intervention by
+            <strong>87%</strong> and downtime by <strong>50%</strong>
+          </li>
+          <li>Developing APIs and workflows to automate Granta MI user and property management across DOE NNSA.</li>
+        </ul>
+      </div>
+      <div class="card">
         <h3>Los Alamos National Laboratory</h3>
         <h4>Summer Research Intern, Computational Physics Division</h4>
         <div class="date">Jun 2024 – Aug 2024</div>
+        <div class="mentor">Mentors: Dr. Richard Berger, Dr. Davis Herring</div>
         <ul>
-          <li>Designed & implemented C++ pointer support in FleCSI (C++17/20/23), enabling direct task parameterization of complex data.</li>
-          <li>Optimized distributed CPU/GPU memory access & validation for asynchronous task pipelines in scientific workloads.</li>
-          <li>Leveraged Legion & NVIDIA HPC SDK to enhance memory safety and performance in computational physics simulations.</li>
+          <li>Designed & implemented C++ pointer support in FleCSI (C++17/20/23), enabling direct task parameterization
+            of complex data.</li>
+          <li>Optimized distributed CPU/GPU memory access & validation for asynchronous task pipelines in scientific
+            workloads.</li>
+          <li>Leveraged Legion & NVIDIA HPC SDK to enhance memory safety and performance in computational physics
+            simulations.</li>
         </ul>
         <a href="https://flecsi.github.io/flecsi/#" target="_blank">View Project</a>
       </div>
+
+
       <div class="card">
         <h3>UC Merced</h3>
         <h4>Undergraduate Research Assistant, PADSYS Lab</h4>
-        <div class="date">Oct 2023 – Present</div>
+        <div class="date">Oct 2023 – Jan 2026</div>
+        <div class="mentor">Supervisor: Prof. Xiaoyi Lu</div>
         <ul>
           <li>Presented MPI & distributed DL proxy benchmarks (CabanaMD, miniMD) in in-depth research talks.</li>
-          <li>Analyzed Horovod collective patterns (ring vs butterfly Allreduce) & compared MPICH, NVIDIA NCCL, Horovod implementations.</li>
+          <li>Analyzed Horovod collective patterns (ring vs butterfly Allreduce) & compared MPICH, NVIDIA NCCL, Horovod
+            implementations.</li>
           <li>Prototyped optimizations to accelerate DL model parallelism and evaluate communication bottlenecks.</li>
         </ul>
       </div>
       <div class="card">
         <h3>UC Merced</h3>
         <h4>Student Technology Consultant, Cyberinfrastructure Team</h4>
-        <div class="date">Oct 2022 – Present</div>
+        <div class="date">Oct 2022 – May 2026</div>
         <ul>
           <li>Support HPC users: job scheduling, environment modules, debugging on campus cluster.</li>
           <li>Authored & maintained comprehensive HPC user documentation & tutorials.</li>
@@ -306,17 +489,21 @@
     </div>
   </section>
 
-    <section id="papers">
+  <section id="papers">
     <h2 class="section-title">Preprints and Publications</h2>
     <ul style="list-style: none; padding-left: 0;">
       <li>
-        <cite>Fang Chen, Alex Villa, Gongbo Liang, Xiaoyi Lu, Meng Tang</cite>, "Can Contrastive Learning Improve Class-Imbalanced Diffusion Model?", <em>arXiv preprint</em> <strong>arXiv:2507.09052</strong> (2025).
+        <cite>Fang Chen, Alex Villa, Gongbo Liang, Xiaoyi Lu, Meng Tang</cite>, "Can Contrastive Learning Improve
+        Class-Imbalanced Diffusion Model?", <em>arXiv preprint</em> <strong>arXiv:2507.09052</strong> (2025).
       </li>
 
-    <li>
-    <cite>Benjamin Bergen , Nick Moss, Irina Demeshko, Davis Herring, Marc Charest, Julien Loiseau,..., Alex Villa, et al. </cite>, "FleCSI: Flexible Computational Science Infrastructure", <em>Journal of Open Source Software</em> preprint <strong>JOSS:9599a55b8eb5f55608d795aefe229fd1</strong> (2025). <strong>PrePrint; In Review</strong>.
-  </li>
-  </ul>
+      <li>
+        <cite>Benjamin Bergen , Nick Moss, Irina Demeshko, Davis Herring, Marc Charest, Julien Loiseau,..., Alex Villa,
+          et al. </cite>, "FleCSI: Flexible Computational Science Infrastructure", <em>Journal of Open Source
+          Software</em> preprint <strong>JOSS:9599a55b8eb5f55608d795aefe229fd1</strong> (2025). <strong>PrePrint; In
+          Review</strong>.
+      </li>
+    </ul>
   </section>
 
   <section id="awards">
@@ -331,7 +518,7 @@
     </ul>
   </section>
 
-  <section id ="services">
+  <section id="services">
     <h2 class="section-title">Services & Involvement</h2>
     <ul style="list-style: none; padding-left: 0;">
       <li>Undergraduate Mentor, UC Merced CSE Department (2024 - Present)</li>
@@ -343,10 +530,13 @@
   <section id="talks">
     <h2 class="section-title">Talks & Presentations</h2>
     <ul style="list-style: none; padding-left: 0;">
-      <li>"Accelerating Physics-informed Neural Networks with Modern GPU Architectures" - SIAM CSE Poster Presentation, March 2025</li>
-      <li>"Horovod: For Heterogenous Distributed Machine Learning Training" - Lightning Talk; SC24 Conference, Nov 2024</li>
+      <li>"Accelerating Physics-informed Neural Networks with Modern GPU Architectures" - SIAM CSE Poster Presentation,
+        March 2025</li>
+      <li>"Horovod: For Heterogenous Distributed Machine Learning Training" - Lightning Talk; SC24 Conference, Nov 2024
+      </li>
       <li>"Better Tasks for Task Based Parallelism" - Los Alamos National Laboratory, August 2024</li>
-      <li>"FleCSI: A Framework for Task-Based Parallelism" - UC Merced Applied Mathematics: Data Science and Scientific Computing Seminar, October 2024</li>
+      <li>"FleCSI: A Framework for Task-Based Parallelism" - UC Merced Applied Mathematics: Data Science and Scientific
+        Computing Seminar, October 2024</li>
 
 
     </ul>
@@ -356,14 +546,17 @@
     <h2 class="section-title">Education</h2>
     <ul style="list-style: none; padding-left: 0;">
       <li><strong>UC Merced</strong>, B.S. Computer Science & Engineering, Minor in Applied Mathematics</li>
-      <li>Expected Graduation: May 2026</li>
     </ul>
   </section>
 
   <section id="contact">
     <h2 class="section-title">Get in Touch</h2>
-    <p>📧 <a href="mailto:avilla@lanl.gov" style="color: var(--clr-accent); text-decoration: none;">avilla@lanl.gov</a></p>
-    <p>💼 <a href="https://www.linkedin.com/in/aevilla160/" target="_blank" style="color: var(--clr-accent); text-decoration: none;">LinkedIn</a> | <a href="https://github.com/aevilla160" target="_blank" style="color: var(--clr-accent); text-decoration: none;">GitHub</a></p>
+    <p>📧 <a href="mailto:alex.villa@ufl.edu"
+        style="color: var(--clr-accent); text-decoration: none;">alex.villa@ufl.edu</a>
+    </p>
+    <p>💼 <a href="https://www.linkedin.com/in/aevilla160/" target="_blank"
+        style="color: var(--clr-accent); text-decoration: none;">LinkedIn</a> | <a href="https://github.com/aevilla160"
+        target="_blank" style="color: var(--clr-accent); text-decoration: none;">GitHub</a></p>
   </section>
 
   <!-- The secret link - barely visible, looks like a subtle separator -->
@@ -371,8 +564,15 @@
     <a href="second.html" class="secret-link" title="">· · ·</a>
   </div>
 
+  <script>
+    document.querySelectorAll('[data-markdown]').forEach(function (el) {
+      el.innerHTML = marked.parse(el.textContent.trim());
+    });
+  </script>
+
   <footer>
-    &copy; 2025 Alex Villa -- Somewhere in between LA and SF.
+    &copy; 2025 Alex Villa -- Somewhere near SF.
   </footer>
 </body>
+
 </html>
