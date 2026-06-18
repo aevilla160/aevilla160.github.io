@@ -572,7 +572,12 @@
 
   <script>
     document.querySelectorAll('[data-markdown]').forEach(function (el) {
-      el.innerHTML = marked.parse(el.textContent.trim());
+      let content = el.textContent;
+      const match = content.match(/^[ \t]+/m);
+      if (match) {
+        content = content.replace(new RegExp('^' + match[0], 'gm'), '');
+      }
+      el.innerHTML = marked.parse(content.trim());
     });
   </script>
 
